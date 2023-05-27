@@ -24,7 +24,7 @@ class SurahTitleWidget extends StatelessWidget {
         padding: EdgeInsets.all(4),
         child: Text(
           title,
-          style: TextStyle(fontSize: 28),
+          style: Theme.of(context).textTheme.headline4,
         ),
       ),
     );

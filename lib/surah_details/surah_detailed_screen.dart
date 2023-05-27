@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:islami_quran/surah_details/surah_details_agruments.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/settings_provider.dart';
 import 'vesrseWidget.dart';
 
 class SurahDetaliedScreen extends StatefulWidget {
@@ -17,13 +19,14 @@ class _SurahDetaliedScreenState extends State<SurahDetaliedScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     SurahDetaliedScreenArg args =
         (ModalRoute.of(context)?.settings.arguments) as SurahDetaliedScreenArg;
     if (verses.isEmpty) readFile(args.index + 1);
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/screen_one_background.png'),
+              image: AssetImage(settingsProvider.gettingMainBackground()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -32,9 +35,8 @@ class _SurahDetaliedScreenState extends State<SurahDetaliedScreen> {
         body: Card(
           elevation: 12,
           margin: EdgeInsets.symmetric(horizontal: 24, vertical: 64),
-          color: Colors.white,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: ListView.separated(
             itemBuilder: (_, index) {
               return VerseWidget(verses[index], index + 1);
@@ -42,7 +44,7 @@ class _SurahDetaliedScreenState extends State<SurahDetaliedScreen> {
             itemCount: verses.length,
             separatorBuilder: (_, __) {
               return Container(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 height: 1,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 64),

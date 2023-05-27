@@ -2,6 +2,7 @@ import 'dart:math' as maths;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SebhaTab extends StatefulWidget {
   @override
@@ -46,17 +47,18 @@ class _SebhaTabState extends State<SebhaTab> {
               MediaQuery.of(context).size.height * .001,
             ),
             child: Text(
-              'عدد التسبيحات',
+              AppLocalizations.of(context)!.tsbeh_qty,
               style: TextStyle(fontSize: 28, color: Colors.brown),
             ),
           ),
           Container(
+            margin: EdgeInsets.symmetric(vertical: 12),
             alignment: Alignment.center,
             height: 70,
             width: 70,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).primaryColor),
+                color: Theme.of(context).accentColor),
             child: Text(
               '$counter',
               style: TextStyle(
@@ -72,7 +74,7 @@ class _SebhaTabState extends State<SebhaTab> {
             width: 200,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).primaryColor),
+                color: Theme.of(context).accentColor),
             child: Text(
               '${tsbeh[index]}',
               style: TextStyle(
